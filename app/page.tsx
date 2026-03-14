@@ -4,6 +4,8 @@ import { useState } from "react";
 import { SearchInput } from "@/components/ui";
 import SepedProduct from "@/components/supplier/seped-product/seped-product";
 import { useRouter } from "next/navigation";
+import DronenaProduct from "@/components/supplier/dronena-product/dronena-product";
+import GrupoCobecaProduct from "@/components/supplier/grupo-cobeca-product/grupo-cobeca-product";
 
 export default function Home() {
   const [searchQuery, setSearchQuery] = useState("");
@@ -31,7 +33,12 @@ export default function Home() {
         />
       </div>
 
-      <SepedProduct />
+      <div className="flex flex-col gap-4">
+        <GrupoCobecaProduct key="grupocobeca" />
+        <SepedProduct key="seped" />
+        <DronenaProduct key="dronena" />
+
+      </div>
     </div>
   );
 }

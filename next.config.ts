@@ -13,6 +13,16 @@ const nextConfig: NextConfig = {
         hostname: "seped.drogueriaintercontinental.net",
         pathname: "/**",
       },
+      {
+        protocol: "http",
+        hostname: "www.dronena.com",
+        pathname: "/**",
+      },
+      {
+        protocol: "https",
+        hostname: "mav.farmaciasaas.com",
+        pathname: "/**",
+      },
     ],
   },
   env: {

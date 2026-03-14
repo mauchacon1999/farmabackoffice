@@ -7,14 +7,14 @@ import { CatalogService } from "@/services";
 
 
 
-const SepedProduct = () => {
+const GrupoCobecaProduct = () => {
     const searchParams = useSearchParams();
     const product = searchParams.get("product");
     const catalogService = new CatalogService();
-    const key = product ? `/suppliers/seped/catalog?product=${product}` : null;
+    const key = product ? `/suppliers/grupocobeca/catalog?product=${product}` : null;
 
     const { data, isLoading, error } = useSWRImmutable(key, () =>
-        catalogService.getProducts("seped", product ?? ""));
+        catalogService.getProducts("grupocobeca", product ?? ""));
     if (error) {
         return <div>Error: {error.message}</div>;
     }
@@ -24,9 +24,9 @@ const SepedProduct = () => {
     }
 
     return (
-        <section aria-labelledby="seped-products-heading">
-            <h2 id="seped-products-heading" className="text-lg font-semibold text-foreground">
-                Productos de Seped: {product}
+        <section aria-labelledby="grupocobeca-products-heading">
+            <h2 id="grupocobeca-products-heading" className="text-lg font-semibold text-foreground">
+                Productos de Grupo Cobeca: {product}
             </h2>
             <ul className="mt-4 grid gap-6 sm:grid-cols-2 lg:grid-cols-3" role="list">
                 {data?.products?.map((row, index) => (
@@ -47,4 +47,4 @@ const SepedProduct = () => {
     );
 };
 
-export default SepedProduct;
+export default GrupoCobecaProduct;
