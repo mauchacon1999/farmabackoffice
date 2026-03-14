@@ -59,25 +59,6 @@ export function ProductCard({
           </p>
         ) : null}
 
-        {/* CTA */}
-        <div className="mt-4">
-          {addToCartHref ? (
-            <Link
-              href={addToCartHref}
-              className="flex w-full items-center justify-center gap-1 rounded-xl bg-accent px-4 py-3 font-semibold text-accent-foreground transition-colors hover:bg-accent/90 focus-visible:outline focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
-            >
-              {ctaContent}
-            </Link>
-          ) : (
-            <button
-              type="button"
-              onClick={onAddToCart}
-              className="flex w-full items-center justify-center gap-1 rounded-xl bg-accent px-4 py-3 font-semibold text-accent-foreground transition-colors hover:bg-accent/90 focus-visible:outline focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
-            >
-              {ctaContent}
-            </button>
-          )}
-        </div>
       </div>
     </article>
   );

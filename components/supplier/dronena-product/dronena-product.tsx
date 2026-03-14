@@ -25,7 +25,7 @@ const DronenaProduct = () => {
 
     return (
         <section className="mt-10" aria-labelledby="dronena-products-heading">
-            <h2 id="dronena-products-heading" className="text-lg font-semibold text-foreground">
+            <h2 id="dronena-products-heading" className="text-3xl font-semibold text-accent">
                 Productos de Dronena: {product}
             </h2>
             <ul className="mt-4 grid gap-6 sm:grid-cols-2 lg:grid-cols-3" role="list">
