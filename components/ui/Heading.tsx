@@ -7,6 +7,9 @@ interface HeadingProps extends React.PropsWithChildren {
 
 const Heading = (props: HeadingProps) => {
     const { total, children } = props;
+    if (total === 0) {
+        return null;
+    }
     return <div>
         <h2 className="text-xl font-medium text-gray-900">
             {children}

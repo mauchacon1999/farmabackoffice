@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Open_Sans } from "next/font/google";
 
+import { AuthProvider } from "@/context/AuthContext";
 import "./globals.css";
 
 /** Font from Droguerías Colsubsidio–style sites (VTEX / e-commerce). */
@@ -23,8 +24,9 @@ export default function RootLayout({
   return (
     <html lang="es">
       <body className={`${openSans.variable} flex min-h-screen flex-col font-sans antialiased`}>
-        <main className="flex-1">{children}</main>
-
+        <AuthProvider>
+          <main className="flex-1">{children}</main>
+        </AuthProvider>
       </body>
     </html>
   );

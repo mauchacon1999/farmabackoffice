@@ -24,5 +24,11 @@ export class BaseService {
         return await this.baseFetch<TResponse>(endpoint, { method: "GET" });
     }
 
-
+    async post<TResponse>(endpoint: string, body: unknown): Promise<TResponse> {
+        return await this.baseFetch<TResponse>(endpoint, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(body),
+        });
+    }
 }

@@ -36,6 +36,7 @@ const SepedProduct = () => {
 
     return (
         <section aria-labelledby="seped-products-heading">
+
             <div className="flex justify-between items-center">
                 <Heading total={catalog.length}>
                     Proveedor Seped
