@@ -1,26 +1,15 @@
 import Image from "next/image";
 import Link from "next/link";
 import type { ProductCardProps } from "./ProductCard.types";
+import { useState } from "react";
 
 
 
-export function ProductCard({
-  imageSrc,
-  imageAlt,
-  productName,
-  price,
-  packagingLabel,
-  unitPriceLabel,
-  addToCartHref,
-  onAddToCart,
-  ctaLabel = "Cómpralo",
-}: ProductCardProps): React.ReactElement {
-  const ctaContent = (
-    <>
-      <span>{ctaLabel}</span>
-      <CartIcon className="ml-1.5 h-4 w-4 shrink-0" />
-    </>
-  );
+export function ProductCard(props: ProductCardProps): React.ReactElement {
+  const { imageSrc, imageAlt, productName, price, packagingLabel, unitPriceLabel, priceNetoBs, precioNetoUsd } = props;
+  console.log(props, "props");
+  const [imageUrl, setImageUrl] = useState(imageSrc);
+  const defaultImage = "/noimagen.webp";
 
   return (
     <article
@@ -28,12 +17,16 @@ export function ProductCard({
       data-testid="product-card"
     >
       {/* Image */}
-      <div className="relative flex min-h-40 shrink-0 items-center justify-center bg-muted/50 px-4 py-6">
+      <div className="relative flex min-h-40 shrink-0 items-center justify-center px-4 py-6">
         <Image
-          src={imageSrc}
+          src={imageUrl}
           alt={imageAlt}
           width={160}
           height={160}
+          loading="lazy"
+          onError={(e) => {
+            setImageUrl(defaultImage);
+          }}
           className="object-contain"
           sizes="(min-width: 1024px) 200px, 160px"
         />
@@ -59,27 +52,18 @@ export function ProductCard({
           </p>
         ) : null}
 
+        {priceNetoBs ? (
+          <p className="mt-0.5 text-sm text-muted-foreground">
+            {priceNetoBs}
+          </p>
+        ) : null}
+        {precioNetoUsd ? (
+          <p className="mt-0.5 text-sm text-muted-foreground">
+            {precioNetoUsd}
+          </p>
+        ) : null}
       </div>
     </article>
   );
 }
 
-function CartIcon({ className }: { className?: string }): React.ReactElement {
-  return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      className={className}
-      aria-hidden
-    >
-      <circle cx="9" cy="21" r="1" />
-      <circle cx="20" cy="21" r="1" />
-      <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6" />
-    </svg>
-  );
-}

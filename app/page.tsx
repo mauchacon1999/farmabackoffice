@@ -11,15 +11,11 @@ export default function Home() {
   const [searchQuery, setSearchQuery] = useState("");
   const router = useRouter();
   return (
-    <div className="mx-auto max-w-7xl px-4 py-8 lg:px-8">
+    <div className="mx-auto max-w-7xl   py-8 lg:px-8 gap-4">
       <h1 className="text-2xl font-semibold text-foreground">
         Bienvenido
       </h1>
-      <p className="mt-2 text-muted-foreground">
-        Contenido principal de la página.
-      </p>
-
-      <div className="mt-6 max-w-md">
+      <div className=" max-w-lg flex py-4">
         <SearchInput
           value={searchQuery}
           onChange={setSearchQuery}

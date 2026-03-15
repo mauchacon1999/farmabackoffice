@@ -15,7 +15,6 @@ export class BaseService {
         endpoint: string,
         config: RequestInit = {},
     ): Promise<TResponse> => {
-        console.log(`${apiUrl}/${proxy}${endpoint}`, "endpoint");
         const response = await fetch(`${apiUrl}/${proxy}${endpoint}`, { ...config });
         const data = await response.json();
         return data as TResponse;

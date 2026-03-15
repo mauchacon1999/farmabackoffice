@@ -4,6 +4,10 @@ import { ProductCard } from "@/components/product";
 import useSWRImmutable from "swr/immutable";
 import { useSearchParams } from "next/navigation";
 import { CatalogService } from "@/services";
+import Heading from "@/components/ui/Heading";
+import SkeletonProduct from "@/components/product/SkeletonProduct";
+import NotResult from "@/components/product/NotResult";
+import ProductCardV2 from "@/components/product/ProductCardV2";
 
 
 
@@ -15,33 +19,28 @@ const GrupoCobecaProduct = () => {
 
     const { data, isLoading, error } = useSWRImmutable(key, () =>
         catalogService.getProducts("grupocobeca", product ?? ""));
+
     if (error) {
         return <div>Error: {error.message}</div>;
     }
 
-    if (isLoading) {
-        return <div>Loading...</div>;
-    }
+
 
     return (
         <section aria-labelledby="grupocobeca-products-heading">
-            <h2 id="grupocobeca-products-heading" className="text-3xl font-semibold text-accent">
-                Productos de Grupo Cobeca: {product}
-            </h2>
-            <ul className="mt-4 grid gap-6 sm:grid-cols-2 lg:grid-cols-3" role="list">
-                {data?.products?.map((row, index) => (
-                    <li key={row.numero ?? `product-${index}`}>
-                        <ProductCard
-                            imageSrc={row.imagenUrl ?? ""}
-                            imageAlt={row.descripcion ?? "Producto"}
-                            productName={row.descripcion ?? ""}
-                            price={row.precioNetoBs ?? row.precioUsd ?? ""}
-                            packagingLabel={row.bulto}
-                            addToCartHref={row.productoUrl ?? "#"}
-                            ctaLabel="Cómpralo"
-                        />
-                    </li>
-                ))}
+            <Heading>
+                Proveedor Grupo Cobeca
+            </Heading>
+            <ul className="mt-4 grid gap-6 sm:grid-cols-2 lg:grid-cols-4" role="list">
+                {isLoading ? <SkeletonProduct />
+                    : !data?.products?.length ? <NotResult /> : data?.products?.map((row, index) => (
+                        <li key={row.numero ?? `product-${index}`}>
+                            <ProductCardV2
+                                product={row}
+
+                            />
+                        </li>
+                    ))}
             </ul>
         </section>
     );

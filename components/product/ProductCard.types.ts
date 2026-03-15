@@ -26,4 +26,8 @@ export type ProductCardProps = {
   onAddToCart?: () => void;
   /** CTA button label */
   ctaLabel?: string;
+  /** Optional price in Bs */
+  priceNetoBs?: string;
+  /** Optional price in Usd */
+  precioNetoUsd?: string;
 };
