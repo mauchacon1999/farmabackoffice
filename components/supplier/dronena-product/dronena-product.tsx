@@ -9,6 +9,10 @@ import ProductCardSimple, {
 } from "@/components/product/ProductCardSimple";
 import { useState } from "react";
 import ProductModal from "@/components/product/ProductModal";
+import useFilter from "@/hooks/useFilter";
+import { FilterInput } from "@/components/ui/FilterInput";
+import { ShowMoreLess } from "@/components/ui/ShowMoreLess";
+import NotResult from "@/components/product/NotResult";
 
 type ProductModalProduct = {
     imagenUrl: string;
@@ -29,6 +33,17 @@ const DronenaProduct = () => {
 
     const { data, isLoading, error } = useSWRImmutable(key, () =>
         catalogService.getProducts("dronena", product ?? ""));
+
+    const catalog = data?.products ?? [];
+    const {
+        displayedItems,
+        hasMore,
+        isExpanded,
+        onShowMore,
+        onShowLess,
+        searchQuery,
+        setSearchQuery,
+    } = useFilter(catalog, "descripcion");
 
     const [productDetail, setProductDetail] = useState<ProductModalProduct | null>(null);
     const [idProductoLoading, setIdProductoLoading] = useState("");
@@ -60,11 +75,19 @@ const DronenaProduct = () => {
 
     return (
         <section className="mt-10" aria-labelledby="dronena-products-heading">
-            <Heading>
-                Proveedor Dronena
-            </Heading>
+            <div className="flex justify-between items-center">
+                <Heading total={catalog.length}>
+                    Proveedor Dronena
+                </Heading>
+                <FilterInput
+                    value={searchQuery}
+                    onChange={setSearchQuery}
+                    className="w-full max-w-sm"
+                />
+
+            </div>
             <ul className="mt-4 grid gap-6 sm:grid-cols-2 lg:grid-cols-4" role="list">
-                {isLoading ? <SkeletonProduct /> : data?.products?.map((row, index) => (
+                {isLoading ? <SkeletonProduct /> : !displayedItems.length ? <NotResult /> : displayedItems.map((row, index) => (
                     <li key={row.numero ?? `product-${index}`}>
                         <ProductCardSimple
                             onViewMoreInfo={onViewMoreInfo}
@@ -74,6 +97,12 @@ const DronenaProduct = () => {
                     </li>
                 ))}
             </ul>
+            <ShowMoreLess
+                hasMore={hasMore}
+                isExpanded={isExpanded}
+                onShowMore={onShowMore}
+                onShowLess={onShowLess}
+            />
             {productDetail && <ProductModal
                 product={productDetail}
                 onCloseModal={() => setProductDetail(null)}

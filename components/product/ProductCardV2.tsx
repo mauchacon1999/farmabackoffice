@@ -48,6 +48,7 @@ export default function ProductCardV2(props: {
                 {/* Header */}
                 <div className="bg-gray-50 px-4 py-4 flex items-center gap-4 border-b border-gray-100">
                     <div className="flex-1 min-w-0">
+
                         <p className="text-xs text-gray-400 mb-0.5">
                             {marca} · Cód. {codigo}
                         </p>
@@ -55,9 +56,13 @@ export default function ProductCardV2(props: {
                             {nombre}
                         </p>
                         <div className="flex flex-wrap gap-1.5">
-                            <span className="text-xs px-2.5 py-0.5 truncate text-nowrap rounded-full bg-green-200 text-green-700 font-medium">
-                                {principioActivo}
-                            </span>
+                            {
+                                principioActivo && (
+                                    <span className="text-xs px-2.5 py-0.5 truncate text-nowrap rounded-full bg-green-200 text-green-700 font-medium">
+                                        {principioActivo}
+                                    </span>
+                                )
+                            }
                             <span className="text-xs px-2.5 py-0.5 truncate text-nowrap rounded-full bg-blue-200 text-blue-700 font-medium">
                                 Stock: {existencia}
                             </span>

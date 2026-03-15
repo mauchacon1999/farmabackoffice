@@ -1,7 +1,6 @@
 "use client";
 const SkeletonProduct = () => {
-    const numberOfCards = 6;
-
+    const numberOfCards = 4;
     return (
         <>
             {Array.from({ length: numberOfCards }).map((_, index) => (
