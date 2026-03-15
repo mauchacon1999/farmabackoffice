@@ -7,4 +7,6 @@ export type FilterInputProps = {
   placeholder?: string;
   /** Additional class for the wrapper */
   className?: string;
+  /** Disabled state */
+  disabled?: boolean;
 };

@@ -28,6 +28,8 @@ const nextConfig: NextConfig = {
   env: {
     apiUrl: process.env.API_URL,
     proxy: process.env.PROXY,
+    jwtExpiresIn: process.env.JWT_EXPIRES_IN,
+    jwtSecret: process.env.JWT_SECRET,
   },
   /**
    * Redirect for proxy's.

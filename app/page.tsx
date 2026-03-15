@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { Suspense, useState, useEffect } from "react";
 import Link from "next/link";
 import { SearchInput } from "@/components/ui";
 import SepedProduct from "@/components/supplier/seped-product/seped-product";
@@ -9,7 +9,7 @@ import DronenaProduct from "@/components/supplier/dronena-product/dronena-produc
 import GrupoCobecaProduct from "@/components/supplier/grupo-cobeca-product/grupo-cobeca-product";
 import { useAuth } from "@/context/AuthContext";
 
-export default function Home() {
+function HomeContent() {
   const searchParams = useSearchParams();
   const product = searchParams.get("product");
   const [searchQuery, setSearchQuery] = useState(product ?? "");
@@ -82,9 +82,15 @@ export default function Home() {
             </>
           )
         }
-
-
       </div>
     </div>
+  );
+}
+
+export default function Home() {
+  return (
+    <Suspense fallback={null}>
+      <HomeContent />
+    </Suspense>
   );
 }
