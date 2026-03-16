@@ -39,7 +39,7 @@ export function SearchInput({
       {hasCta ? (
         <button
           type="submit"
-          className="shrink-0 rounded-r-md bg-accent px-4 py-2.5 font-semibold text-accent-foreground transition-colors hover:bg-accent/90 focus-visible:outline focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-60"
+          className="shrink-0 rounded-r-md bg-accent px-4 py-2.5 font-semibold text-accent-foreground  transition-colors hover:bg-accent/90 focus-visible:outline focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-60"
           disabled={disabled ?? false}
         >
           {ctaLabel}
