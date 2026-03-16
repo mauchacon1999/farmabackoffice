@@ -40,7 +40,7 @@ export function LoginForm({ onSuccess, onError }: LoginFormProps): React.ReactEl
       <h2 className="text-xl font-semibold text-foreground">Iniciar sesión</h2>
 
       <div className="flex flex-col gap-2">
-        <label htmlFor="login-username" className="text-sm font-medium text-foreground">
+        <label htmlFor="login-username" className="text-sm font-medium text-foreground ">
           Usuario
         </label>
         <input
