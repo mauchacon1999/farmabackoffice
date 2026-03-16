@@ -34,6 +34,7 @@ export class AuthService extends BaseService {
     const url = `${getBaseUrl()}/auth/logout`;
     await fetch(url, {
       method: "POST",
+      credentials: "include",
       headers: token ? { Authorization: `Bearer ${token}` } : {},
     });
   }

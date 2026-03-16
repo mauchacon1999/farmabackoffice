@@ -15,7 +15,10 @@ export class BaseService {
         endpoint: string,
         config: RequestInit = {},
     ): Promise<TResponse> => {
-        const response = await fetch(`${apiUrl}/${proxy}${endpoint}`, { ...config });
+        const response = await fetch(`${apiUrl}/${proxy}${endpoint}`, {
+            credentials: "include",
+            ...config,
+        });
         const data = await response.json();
         return data as TResponse;
     };
